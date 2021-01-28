@@ -4,6 +4,20 @@ using namespace std;
 
 wstring tetromino[7];  // tetris shapes  // cplusplus.com/reference/string/wstring/
 
+int Rotate(int px, int py, int r) {
+    switch (r % 4) {
+        case 0:
+            return py * 4 + px;
+        case 1:
+            return 12 + py - (4 * px);
+        case 2:
+            return 15 - px - (py * 4);
+        case 3:
+            return 3 - py + (4 * px);
+    }
+    return 0;
+}
+
 int main() {
     // create assets
     tetromino[0].append(L"..X.");
