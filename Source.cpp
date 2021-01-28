@@ -3,6 +3,9 @@
 using namespace std;
 
 wstring tetromino[7];  // tetris shapes  // cplusplus.com/reference/string/wstring/
+int nFieldWidth = 12;
+int nFieldHeight = 18;
+unsigned char *pField = nullptr;
 
 int Rotate(int px, int py, int r) {
     switch (r % 4) {
@@ -55,5 +58,12 @@ int main() {
     tetromino[6].append(L".X..");
     tetromino[6].append(L".X..");
 
+    pField = new unsigned char[nFieldWidth * nFieldHeight];  // Create play field buffer
+    for (int x = 0; x < nFieldWidth; x++) {
+        for (int y = 0; y < nFieldHeight; y++) {
+            pField[y * nFieldWidth + x] = (x == 0 || x == nFieldWidth - 1 || y == nFieldHeight - 1) ? 9 : 0;
+        }
+    }
+    // Board boundary
     return 0;
 }
